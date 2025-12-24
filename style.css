@@ -195,6 +195,117 @@ body {
     gap: 10px; /* Эффект движения стрелки */
 }
 
+/* --- SECTION ABOUT ME --- */
+.about-me {
+    padding: 4rem 10%;
+    margin-top: 2rem;
+    display: flex;
+    justify-content: center;
+}
+
+.about-container {
+    background: var(--card-bg);
+    backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 30px;
+    padding: 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 3rem;
+    width: 100%;
+    max-width: 1000px;
+    transition: var(--transition);
+}
+
+.about-container:hover {
+    box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+    border-color: var(--accent);
+}
+
+.about-text h2 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    color: var(--accent);
+}
+
+.about-text p {
+    color: var(--text-muted);
+    max-width: 500px;
+}
+
+.contact-box {
+    text-align: center;
+}
+
+.contact-box p {
+    margin-bottom: 1.5rem;
+    font-weight: 600;
+}
+
+/* --- КРАСИВАЯ КНОПКА С ЗАПОЛНЕНИЕМ СНИЗУ --- */
+.btn-tg {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 15px 40px;
+    color: var(--accent); /* Текст изначально цвета акцента */
+    text-decoration: none;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border: 2px solid var(--accent);
+    border-radius: 12px;
+    overflow: hidden; /* Чтобы заполнение не выходило за края */
+    z-index: 1;
+    transition: all 0.4s ease-in-out;
+}
+
+.btn-tg i {
+    font-size: 1.2rem;
+    z-index: 2;
+}
+
+/* Слой заполнения */
+.btn-tg::before {
+    content: '';
+    position: absolute;
+    bottom: -100%; /* Прячем внизу */
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--accent);
+    transition: bottom 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: -1; /* Под текстом */
+}
+
+/* Эффект при наведении */
+.btn-tg:hover {
+    color: var(--bg-color); /* Цвет текста меняется на темный */
+    box-shadow: 0 0 25px var(--accent-glow);
+}
+
+.btn-tg:hover::before {
+    bottom: 0; /* Поднимаем слой вверх */
+}
+
+.btn-tg:active {
+    transform: scale(0.95);
+}
+
+/* Адаптив для мобилок */
+@media (max-width: 768px) {
+    .about-container {
+        flex-direction: column;
+        text-align: center;
+        padding: 2rem;
+    }
+    .about-text p {
+        margin: 0 auto;
+    }
+}
+
 /* --- FOOTER --- */
 footer {
     text-align: center;
@@ -203,20 +314,6 @@ footer {
     font-size: 0.9rem;
     border-top: 1px solid rgba(255,255,255,0.05);
     margin-top: 4rem;
-}
-
-.link {
-    margin-top: 20px;
-}
-
-.link a {
-    color: var(--text-muted);
-    transition: all 200ms ease-in-out;
-}
-
-.link a:hover {
-    color: var(--accent);
-    text-shadow: 0 1px 4px var(--accent);
 }
 
 /* --- MEDIA QUERIES --- */
