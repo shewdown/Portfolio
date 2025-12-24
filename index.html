@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Кирилл | Портфолио</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+
+    <div class="shape shape-1"></div>
+    <div class="shape shape-2"></div>
+
+    <section class="hero">
+        <h1>Создаю сайты,<br>которые продают.</h1>
+        <p>Frontend-разработчик. Верстка, анимация, внимание к деталям.</p>
+        <a href="#portfolio" class="btn-scroll">Смотреть работы</a>
+    </section>
+
+    <section id="portfolio" class="portfolio">
+        <h2 class="section-title">Мои Проекты</h2>
+        
+        <div class="grid">
+            
+            <article class="card">
+                <div class="card-image">
+                    <img src="images/project1.png" alt="Digital Agency Website">
+                </div>
+                <div class="card-content">
+                    <span class="card-category">Landing Page</span>
+                    <h3 class="card-title">Digital Agency</h3>
+                    <p class="card-desc">Корпоративный сайт для веб-студии. Современный дизайн, адаптивная верстка под все устройства.</p>
+                    <div class="card-links">
+                        <a href="https://shewdown.github.io/Lending1/" target="_blank" class="btn-visit">
+                            Смотреть <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </article>
+
+            <article class="card">
+                <div class="card-image">
+                    <img src="images/project2.png" alt="Digital Agency Website">
+                </div>
+                <div class="card-content">
+                    <span class="card-category">Service Business</span>
+                    <h3 class="card-title">Beauty Salon</h3>
+                    <p class="card-desc">Лендинг для салона красоты. Презентация услуг, приятная цветовая гамма и удобная структура.</p>
+                    <div class="card-links">
+                        <a href="https://shewdown.github.io/Lending2/" target="_blank" class="btn-visit">
+                            Смотреть <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </article>
+
+            <article class="card">
+                <div class="card-image">
+                    <img src="images/project3.png" alt="Digital Agency Website">
+                </div>
+                <div class="card-content">
+                    <span class="card-category">Wellness</span>
+                    <h3 class="card-title">Massage Studio</h3>
+                    <p class="card-desc">Сайт для студии массажа. Акцент на атмосферу релакса, чистый код и быстрая загрузка.</p>
+                    <div class="card-links">
+                        <a href="https://shewdown.github.io/Lending3/" target="_blank" class="btn-visit">
+                            Смотреть <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </article>
+
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 Портфолио. Фисюков Кирилл Андреевич</p>
+    </footer>
+
+    <script>
+        // Простой скрипт для анимации появления при скролле
+        document.addEventListener('DOMContentLoaded', () => {
+            const cards = document.querySelectorAll('.card');
+
+            const observerOptions = {
+                threshold: 0.1 // Срабатывает, когда 10% элемента видно
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach((entry, index) => {
+                    if (entry.isIntersecting) {
+                        // Добавляем задержку для каскадного эффекта
+                        setTimeout(() => {
+                            entry.target.style.opacity = '1';
+                            entry.target.style.transform = 'translateY(0)';
+                        }, index * 150); // 150ms задержка между карточками
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            cards.forEach(card => {
+                observer.observe(card);
+            });
+        });
+    </script>
+</body>
+</html>

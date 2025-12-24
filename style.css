@@ -1,0 +1,212 @@
+/* --- CSS VARIABLES & RESET --- */
+:root {
+    --bg-color: #0f172a;
+    --card-bg: rgba(30, 41, 59, 0.7);
+    --accent: #38bdf8; /* Голубой неон */
+    --accent-glow: rgba(56, 189, 248, 0.4);
+    --text-main: #f1f5f9;
+    --text-muted: #94a3b8;
+    --transition: all 0.4s ease;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-main);
+    overflow-x: hidden;
+    line-height: 1.6;
+}
+
+/* --- BACKGROUND SHAPES (Декор) --- */
+.shape {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(80px);
+    z-index: -1;
+    opacity: 0.6;
+    animation: float 10s infinite alternate;
+}
+.shape-1 { top: -10%; left: -10%; width: 500px; height: 500px; background: #4c1d95; }
+.shape-2 { bottom: 10%; right: -5%; width: 400px; height: 400px; background: #0c4a6e; }
+
+@keyframes float {
+    0% { transform: translate(0, 0); }
+    100% { transform: translate(30px, 50px); }
+}
+
+/* --- HERO SECTION --- */
+.hero {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 0 20px;
+}
+
+.hero h1 {
+    font-size: 4rem;
+    margin-bottom: 1rem;
+    line-height: 1.1;
+    background: linear-gradient(to right, #fff, var(--accent));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.hero p {
+    font-size: 1.2rem;
+    color: var(--text-muted);
+    max-width: 600px;
+    margin-bottom: 2rem;
+}
+
+.btn-scroll {
+    padding: 12px 30px;
+    border: 2px solid var(--accent);
+    color: var(--accent);
+    text-decoration: none;
+    border-radius: 50px;
+    font-weight: 600;
+    transition: var(--transition);
+}
+
+.btn-scroll:hover {
+    background: var(--accent);
+    color: var(--bg-color);
+    box-shadow: 0 0 20px var(--accent-glow);
+}
+
+/* --- PORTFOLIO GRID --- */
+.portfolio {
+    padding: 5rem 10%;
+}
+
+.section-title {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 4rem;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 3rem;
+}
+
+/* --- CARDS (Глассморфизм) --- */
+.card {
+    background: var(--card-bg);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    overflow: hidden;
+    backdrop-filter: blur(10px);
+    transition: var(--transition);
+    position: relative;
+    transform-style: preserve-3d;
+    opacity: 0; /* Для JS анимации */
+    transform: translateY(30px);
+}
+
+.card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+    border-color: var(--accent);
+}
+
+/* Плейсхолдер для скриншота (градиент, пока нет фото) */
+.card-image {
+    height: 200px;
+    width: 100%;
+    background: linear-gradient(45deg, #1e293b, #334155);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 3rem;
+    color: rgba(255,255,255,0.1);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Если захочешь вставить реальные скриншоты, раскомментируй img внутри div и стиль ниже */
+.card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+.card:hover .card-image img {
+    transform: scale(1.1);
+}
+
+.card-content {
+    padding: 2rem;
+}
+
+.card-category {
+    font-size: 0.8rem;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    display: block;
+}
+
+.card-title {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.card-desc {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    margin-bottom: 1.5rem;
+}
+
+.card-links {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.btn-visit {
+    text-decoration: none;
+    color: #fff;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    transition: 0.3s;
+}
+
+.btn-visit:hover {
+    color: var(--accent);
+    gap: 10px; /* Эффект движения стрелки */
+}
+
+/* --- FOOTER --- */
+footer {
+    text-align: center;
+    padding: 3rem;
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    border-top: 1px solid rgba(255,255,255,0.05);
+    margin-top: 4rem;
+}
+
+/* --- MEDIA QUERIES --- */
+@media (max-width: 768px) {
+    .hero h1 { font-size: 2.5rem; }
+    .grid { grid-template-columns: 1fr; }
+}
