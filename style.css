@@ -201,6 +201,8 @@ body {
     margin-top: 2rem;
     display: flex;
     justify-content: center;
+    transition: var(--transition);
+    opacity: 0;
 }
 
 .about-container {

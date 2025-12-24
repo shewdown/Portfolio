@@ -80,11 +80,11 @@
         <div class="about-container">
             <div class="about-text">
                 <h2>Немного обо мне</h2>
-                <p>Я создаю быстрые, современные и удобные веб-сайты, которые работают безупречно на любом устройстве. Моя работа — не просто сделать сайт, а решить вашу бизнес-задачу: удержать внимание пользователя, повысить конверсию и представить продукт в выгодном свете.</p>
+                <p>Я создаю быстрые, современные и удобные веб-сайты, которые работают безупречно на любом устройстве.<br>Моя работа — не просто сделать сайт, а решить вашу бизнес-задачу: удержать внимание пользователя, повысить конверсию и представить продукт в выгодном свете.</p>
             </div>
             
             <div class="contact-box">
-                <p>Есть вопросы? Напиши, разберём</p>
+                <p>Есть вопросы? — Напиши, разберём</p>
                 <a href="https://t.me/shewdown" class="btn-tg" target="_blank">
                     <i class="fab fa-telegram-plane"></i> Написать
                 </a>
@@ -100,6 +100,31 @@
         // Простой скрипт для анимации появления при скролле
         document.addEventListener('DOMContentLoaded', () => {
             const cards = document.querySelectorAll('.card');
+
+            const observerOptions = {
+                threshold: 0.1 // Срабатывает, когда 10% элемента видно
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach((entry, index) => {
+                    if (entry.isIntersecting) {
+                        // Добавляем задержку для каскадного эффекта
+                        setTimeout(() => {
+                            entry.target.style.opacity = '1';
+                            entry.target.style.transform = 'translateY(0)';
+                        }, index * 150); // 150ms задержка между карточками
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            cards.forEach(card => {
+                observer.observe(card);
+            });
+        });
+        // Простой скрипт для анимации появления при скролле
+        document.addEventListener('DOMContentLoaded', () => {
+            const cards = document.querySelectorAll('.about-me');
 
             const observerOptions = {
                 threshold: 0.1 // Срабатывает, когда 10% элемента видно
