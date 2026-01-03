@@ -27,6 +27,19 @@ body {
     line-height: 1.6;
 }
 
+/* --- SCROLL REVEAL ANIMATION --- */
+.reveal {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+    will-change: opacity, transform;
+}
+
+.reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
 /* --- BACKGROUND SHAPES (Декор) --- */
 .shape {
     position: absolute;
@@ -71,22 +84,6 @@ body {
     margin-bottom: 2rem;
 }
 
-.btn-scroll {
-    padding: 12px 30px;
-    border: 2px solid var(--accent);
-    color: var(--accent);
-    text-decoration: none;
-    border-radius: 50px;
-    font-weight: 600;
-    transition: var(--transition);
-}
-
-.btn-scroll:hover {
-    background: var(--accent);
-    color: var(--bg-color);
-    box-shadow: 0 0 20px var(--accent-glow);
-}
-
 /* --- PORTFOLIO GRID --- */
 .portfolio {
     padding: 5rem 10%;
@@ -95,7 +92,7 @@ body {
 .section-title {
     text-align: center;
     font-size: 2.5rem;
-    margin-bottom: 4rem;
+    margin-bottom: 5rem;
 }
 
 .grid {
@@ -114,8 +111,6 @@ body {
     transition: var(--transition);
     position: relative;
     transform-style: preserve-3d;
-    opacity: 0; /* Для JS анимации */
-    transform: translateY(30px);
 }
 
 .card:hover {
@@ -201,11 +196,11 @@ body {
     margin-top: 2rem;
     display: flex;
     justify-content: center;
-    transition: var(--transition);
-    opacity: 0;
+    flex-direction: column;
 }
 
 .about-container {
+    align-self: center;
     background: var(--card-bg);
     backdrop-filter: blur(15px);
     border: 1px solid rgba(255, 255, 255, 0.1);
@@ -246,7 +241,7 @@ body {
 }
 
 /* --- КРАСИВАЯ КНОПКА С ЗАПОЛНЕНИЕМ СНИЗУ --- */
-.btn-tg {
+.btn {
     position: relative;
     display: inline-flex;
     align-items: center;
@@ -264,13 +259,13 @@ body {
     transition: all 0.4s ease-in-out;
 }
 
-.btn-tg i {
+.btn i {
     font-size: 1.2rem;
     z-index: 2;
 }
 
 /* Слой заполнения */
-.btn-tg::before {
+.btn::before {
     content: '';
     position: absolute;
     bottom: -100%; /* Прячем внизу */
@@ -283,16 +278,16 @@ body {
 }
 
 /* Эффект при наведении */
-.btn-tg:hover {
+.btn:hover {
     color: var(--bg-color); /* Цвет текста меняется на темный */
     box-shadow: 0 0 25px var(--accent-glow);
 }
 
-.btn-tg:hover::before {
+.btn:hover::before {
     bottom: 0; /* Поднимаем слой вверх */
 }
 
-.btn-tg:active {
+.btn:active {
     transform: scale(0.95);
 }
 
@@ -322,4 +317,12 @@ footer {
 @media (max-width: 768px) {
     .hero h1 { font-size: 2.5rem; }
     .grid { grid-template-columns: 1fr; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .reveal {
+        transition: none;
+        transform: none;
+        opacity: 1;
+    }
 }

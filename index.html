@@ -17,7 +17,9 @@
     <section class="hero">
         <h1>Создаю сайты,<br>которые продают.</h1>
         <p>Frontend-разработчик. Верстка, анимация, внимание к деталям.</p>
-        <a href="#portfolio" class="btn-scroll">Смотреть работы</a>
+        <a href="#portfolio" class="btn">
+            Смотреть работы
+        </a>
     </section>
 
     <section id="portfolio" class="portfolio">
@@ -25,7 +27,7 @@
         
         <div class="grid">
             
-            <article class="card">
+            <article class="card reveal">
                 <div class="card-image">
                     <img src="images/project1.png" alt="Digital Agency Website">
                 </div>
@@ -41,7 +43,7 @@
                 </div>
             </article>
 
-            <article class="card">
+            <article class="card reveal">
                 <div class="card-image">
                     <img src="images/project2.png" alt="Digital Agency Website">
                 </div>
@@ -57,7 +59,7 @@
                 </div>
             </article>
 
-            <article class="card">
+            <article class="card reveal">
                 <div class="card-image">
                     <img src="images/project3.png" alt="Digital Agency Website">
                 </div>
@@ -77,15 +79,18 @@
     </section>
 
     <section class="about-me">
-        <div class="about-container">
+
+        <h2 class="section-title">Обо мне</h2>
+
+        <div class="about-container reveal">
             <div class="about-text">
-                <h2>Немного обо мне</h2>
+                <h2>Немного о себе</h2>
                 <p>Я создаю быстрые, современные и удобные веб-сайты, которые работают безупречно на любом устройстве.<br>Моя работа — не просто сделать сайт, а решить вашу бизнес-задачу: удержать внимание пользователя, повысить конверсию и представить продукт в выгодном свете.</p>
             </div>
             
             <div class="contact-box">
                 <p>Есть вопросы? — Напиши, разберём</p>
-                <a href="https://t.me/shewdown" class="btn-tg" target="_blank">
+                <a href="https://t.me/shewdown" class="btn" target="_blank">
                     <i class="fab fa-telegram-plane"></i> Написать
                 </a>
             </div>
@@ -97,55 +102,21 @@
     </footer>
 
     <script>
-        // Простой скрипт для анимации появления при скролле
         document.addEventListener('DOMContentLoaded', () => {
-            const cards = document.querySelectorAll('.card');
+            const items = document.querySelectorAll('.reveal');
 
-            const observerOptions = {
-                threshold: 0.1 // Срабатывает, когда 10% элемента видно
-            };
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (!entry.isIntersecting) return;
 
-            const observer = new IntersectionObserver((entries, observer) => {
-                entries.forEach((entry, index) => {
-                    if (entry.isIntersecting) {
-                        // Добавляем задержку для каскадного эффекта
-                        setTimeout(() => {
-                            entry.target.style.opacity = '1';
-                            entry.target.style.transform = 'translateY(0)';
-                        }, index * 150); // 150ms задержка между карточками
-                        observer.unobserve(entry.target);
-                    }
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
                 });
-            }, observerOptions);
-
-            cards.forEach(card => {
-                observer.observe(card);
+            }, {
+                threshold: 0.15
             });
-        });
-        // Простой скрипт для анимации появления при скролле
-        document.addEventListener('DOMContentLoaded', () => {
-            const cards = document.querySelectorAll('.about-me');
 
-            const observerOptions = {
-                threshold: 0.1 // Срабатывает, когда 10% элемента видно
-            };
-
-            const observer = new IntersectionObserver((entries, observer) => {
-                entries.forEach((entry, index) => {
-                    if (entry.isIntersecting) {
-                        // Добавляем задержку для каскадного эффекта
-                        setTimeout(() => {
-                            entry.target.style.opacity = '1';
-                            entry.target.style.transform = 'translateY(0)';
-                        }, index * 150); // 150ms задержка между карточками
-                        observer.unobserve(entry.target);
-                    }
-                });
-            }, observerOptions);
-
-            cards.forEach(card => {
-                observer.observe(card);
-            });
+            items.forEach(el => observer.observe(el));
         });
     </script>
 </body>
