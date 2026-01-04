@@ -17,13 +17,14 @@
 
 html {
     scroll-behavior: smooth;
+    overflow-x: hidden;
+    max-width: 100vw;
 }
 
 body {
     font-family: 'Poppins', sans-serif;
     background-color: var(--bg-color);
     color: var(--text-main);
-    overflow-x: hidden;
     line-height: 1.6;
 }
 
@@ -42,15 +43,31 @@ body {
 
 /* --- BACKGROUND SHAPES (Декор) --- */
 .shape {
-    position: absolute;
+    position: fixed;
     border-radius: 50%;
     filter: blur(80px);
     z-index: -1;
     opacity: 0.6;
     animation: float 10s infinite alternate;
+    max-width: 100vw;
+    overflow: hidden;
 }
-.shape-1 { top: -10%; left: -10%; width: 500px; height: 500px; background: #4c1d95; }
-.shape-2 { bottom: 10%; right: -5%; width: 400px; height: 400px; background: #0c4a6e; }
+
+.shape-1 { 
+    top: -10%; 
+    left: 0;
+    width: min(500px, 50vw);
+    height: min(500px, 50vw);
+    background: #4c1d95; 
+}
+
+.shape-2 { 
+    bottom: 10%; 
+    right: 0;
+    width: min(400px, 40vw);
+    height: min(400px, 40vw);
+    background: #0c4a6e; 
+}
 
 @keyframes float {
     0% { transform: translate(0, 0); }
